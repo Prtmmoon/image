@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+    img{
+      height: 300px;
+      width: 300px;
+    }
+    *{
+      background:  #4a4949;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+
+    }
+    /* .logo {
+      width: 290px;
+      height: 63px;
+      border: 2px solid red;
+      } */
+</style>
+
+<div class="logo"></div>
+  </head>
+  <body>
+
+    <input id="myinput" type="file" onchange="encode();" style="
+    margin-top: 150px; margin-bottom: 10px;">
+
+
+    <div id="dummy">
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content:flex-end;">
+      <textarea style="width:350px;height:300px;margin-left: 8px; color: white;" id="txt">Just choose your photo and have your encoded script here. Copy and erase all the records just in one click by the provided button. Cheers!!!
+      </textarea>
+      <a style="height:50px;width:60px;" onclick="copy()" href="image to 64.html"><button style="background: red; color: white; margin-top: 7px; margin-left: 145px;" >One click Copy & Erase records</button></a>
+    </div>
+    <div class="logo">
+
+    </div>
+     <script type="text/javascript">
+     function copy() {
+  let textarea = document.getElementById("txt");
+  textarea.select();
+  document.execCommand("copy");
+}
+
+     </script>
+    <script>
+      function encode() {
+        var selectedfile = document.getElementById("myinput").files;
+        if (selectedfile.length > 0) {
+          var imageFile = selectedfile[0];
+          var fileReader = new FileReader();
+          fileReader.onload = function(fileLoadedEvent) {
+            var srcData = fileLoadedEvent.target.result;
+            var newImage = document.createElement('img');
+            newImage.src = srcData;
+            document.getElementById("dummy").innerHTML = newImage.outerHTML;
+            document.getElementById("txt").value = document.getElementById("dummy").innerHTML;
+          }
+          fileReader.readAsDataURL(imageFile);
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
+<script type="text/javascript">
+  // is the script is base64?
+  function isBase64(str) {
+    if (str ==='' || str.trim() ===''){ return false; }
+    try {
+        return btoa(atob(str)) == str;
+    } catch (err) {
+        return false;
+    }
+}
+
+</script>

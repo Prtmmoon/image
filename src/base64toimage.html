@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    *{
+      background-color: #4a4949;
+    }
+      body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      #image{
+        /* border: 2px solid black; */
+        height: 300px;
+        width: 350px;
+        margin-top: 75px;
+        margin-right: 145px;
+      }
+      img{
+        height: 300px;
+        width: 350px;
+      }
+      .insideBody{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+      .destroy{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      button{
+        background: #b1a2a2;
+        color:white;
+        font-size: 14px;
+        border-radius: 7px;
+        visibility: hidden;
+            }
+        .download{
+          display: inline-flex;
+          justify-content: center;
+        }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="insideBody">
+      <div>
+        <h2>Paste your encoded script here :</h2>
+        <textarea style="width:350px;height:300px;margin-left: 8px; margin-top: 10px;" id="txt">
+        </textarea>
+      </div>
+      <div class="destroy">
+        <input type="submit" onclick="genImage()" name="" value="Generate image" style="
+        margin-left: 15px;  margin-right: 15px;height: 39px;margin-top: 145px;border-radius: 7px;background:aqua;color:black; cursor: pointer;">
+        <a style="height:50px;width:60px;margin:auto;" href="base64toimage.html"><button style="background: red;">Destroy All Record</button></a>
+        <div class="download">
+          <a class="down" style="height:50px;width:60px;margin:auto;"  download><button style="background: green;">Download Image</button></a>
+        </div>
+      </div>
+      <div id="image">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function genImage() {
+      document.getElementById('image').innerHTML = document.getElementById("txt").value;
+      var y = document.getElementsByClassName('down');
+      var x = document.getElementsByTagName("img");
+      y[0].href = x[0].currentSrc;
+      document.getElementsByTagName('button')[1].style.visibility='visible';
+      document.getElementsByTagName('button')[0].style.visibility='visible';
+      document.getElementsByTagName('button')[1].style.cursor='pointer';
+      document.getElementsByTagName('button')[0].style.cursor='pointer';
+
+    }
+    </script>
+
+
+  </body>
+</html>
